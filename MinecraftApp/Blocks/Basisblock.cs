@@ -1,11 +1,21 @@
-class Basisblock
+namespace MinecraftApp.Blocks;
+
+public class Basisblock
 {
     private string color;
-    private int speed;
 
-    public string Props   // property
+    public string Color
     {
-        get;
-        set;
+        get { return this.color; }
+        set { color = value; }
+    }
+    
+    
+    private int speed;
+    
+    public int Speed
+    {
+        get { return this.speed; }
+        set { speed = value; }
     }
 }
