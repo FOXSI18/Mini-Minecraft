@@ -2,12 +2,18 @@ namespace MinecraftApp.Blocks;
 
 public class Sand : Basisblock
 {
-    public Sand() : base("Sand", "yellow", 10)
+    public bool FallsDown { get; set; }
+
+    public Sand() : base("Sand", "yellow", 3)
     {
+        FallsDown = true;
     }
 
-    public override void Broken()
+    public override int CalculateBreakTime(Tool tool)
     {
-        Console.WriteLine("The sand block was broken.");
+        if (tool == Tool.Shovel)
+            return BreakTime - 2;
+
+        return BreakTime + 1;
     }
 }

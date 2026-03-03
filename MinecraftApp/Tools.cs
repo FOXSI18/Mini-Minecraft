@@ -1,6 +1,6 @@
 namespace MinecraftApp
 {
-    internal enum Tools
+    public enum Tool
     {
         Hand = 1,
         Pickaxe,

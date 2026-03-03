@@ -2,12 +2,18 @@ namespace MinecraftApp.Blocks;
 
 public class IronOre : Basisblock
 {
-    public IronOre() : base("Iron Ore", "gray", 20)
+    public bool IsHard { get; set; }
+
+    public IronOre() : base("Iron Ore", "gray", 8)
     {
+        IsHard = true;
     }
     
-    public override void Broken()
+     public override int CalculateBreakTime(Tool tool)
     {
-        Console.WriteLine("The Iron Ore block was broken.");
+        if (tool == Tool.Pickaxe)
+            return BreakTime - 5;
+
+        return BreakTime + 3;
     }
 }

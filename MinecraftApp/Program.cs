@@ -2,130 +2,32 @@
 
 namespace MinecraftApp;
 
-internal class Program
+class Program
 {
-    private static void Main()
+    static void Main()
     {
-        Basisblock block;
-        var exit = false;
-        ConsoleKeyInfo userChoice;
-
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("If you want to see hotbar click 'Space'");
-        Console.WriteLine("You can always press any NaN key to exit.");
-        Console.ResetColor();
-
-        do
+        List<Basisblock> world = new List<Basisblock>
         {
-            userChoice = Console.ReadKey();
+            new IronOre(),
+            new Wood(),
+            new Sand()
+        };
 
-            switch (userChoice.Key)
-            {
-                case ConsoleKey.D1:
-                    FuncKey1();
-                    break;
-                case ConsoleKey.D2:
-                    FuncKey2();
-                    break;
-                case ConsoleKey.D3:
-                    FuncKey3();
-                    break;
-                case ConsoleKey.D4:
-                    FuncKey4();
-                    break;
-                case ConsoleKey.Spacebar:
-                    ShowActions();
-                    break;
-                default:
-                    ExitProgram();
-                    break;
-            }
-        } while (!exit);
+        Console.WriteLine("Welcome to Mini Minecraft!");
+        Console.WriteLine("You can choose your tool:");
+        Console.WriteLine("1 = Hand");
+        Console.WriteLine("2 = Pickaxe");
+        Console.WriteLine("3 = Shovel");
+        Console.WriteLine("4 = Axe");
 
-        void FuncKey1()
+        Tool selectedTool = (Tool)Convert.ToInt32(Console.ReadLine());
+
+        foreach (var block in world)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("[1:Hand] ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("[2:Pickaxe] [3:Shovel] [4:Axe]");
-            Console.ResetColor();
+            block.ShowInfo();
+            block.Break(selectedTool);
         }
 
-        void FuncKey2()
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("[1:Hand] ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("[2:Pickaxe] ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("[3:Shovel] [4:Axe]");
-            Console.ResetColor();
-        }
-
-        void FuncKey3()
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("[1:Hand] [2:Pickaxe] ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("[3:Shovel] ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("[4:Axe]");
-            Console.ResetColor();
-        }
-
-        void FuncKey4()
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write("[1:Hand] [2:Pickaxe] [3:Shovel] ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("[4:Axe]");
-            Console.ResetColor();
-        }
-
-        void ShowActions()
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("[1:Hand] [2:Pickaxe] [3:Shovel] [4:Axe]");
-            Console.ResetColor();
-        }
-
-        void ExitProgram()
-        {
-            Console.Clear();
-
-            Console.WriteLine("Are you sure that you exit want? Y/N");
-            var exitChoice = Console.ReadKey();
-
-            switch (exitChoice.Key)
-            {
-                case ConsoleKey.Y:
-                    exit = true;
-                    break;
-                case ConsoleKey.N:
-                    exit = false;
-                    Console.Clear();
-                    Main();
-                    break;
-                default:
-                    ExitProgram();
-                    break;
-            }
-        }
-        
-        /*block.Info();
-        Console.WriteLine();
-        block.Broken();
-        Console.WriteLine();*/
+        Console.WriteLine("All blocks have been destroyed!");
     }
 }

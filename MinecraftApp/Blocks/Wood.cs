@@ -2,12 +2,17 @@ namespace MinecraftApp.Blocks;
 
 public class Wood : Basisblock
 {
-    public Wood() : base("Wood", "brown", 15)
+     public bool IsFlammable { get; set; }
+        public Wood() : base("Wood", "brown", 5)
     {
+        IsFlammable = true;
     }
     
-    public override void Broken()
+     public override int CalculateBreakTime(Tool tool)
     {
-        Console.WriteLine("The wood block was broken.");
+        if (tool == Tool.Axe)
+            return BreakTime - 4;
+
+        return BreakTime + 2;
     }
 }
