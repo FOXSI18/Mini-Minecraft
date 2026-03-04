@@ -12,8 +12,8 @@ public class IronOre : Basisblock
      public override int CalculateBreakTime(Tool tool)
     {
         if (tool == Tool.Pickaxe)
-            return BreakTime - 5;
+            return BreakTime - 6;
 
-        return BreakTime + 3;
+        return BreakTime;
     }
 }

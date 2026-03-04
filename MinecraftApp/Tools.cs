@@ -6,5 +6,6 @@ namespace MinecraftApp
         Pickaxe,
         Shovel,
         Axe,
+        Exit,
     } 
 }

@@ -3,7 +3,7 @@ namespace MinecraftApp.Blocks;
 public class Wood : Basisblock
 {
      public bool IsFlammable { get; set; }
-        public Wood() : base("Wood", "brown", 5)
+        public Wood() : base("Wood", "green", 5)
     {
         IsFlammable = true;
     }
@@ -13,6 +13,6 @@ public class Wood : Basisblock
         if (tool == Tool.Axe)
             return BreakTime - 4;
 
-        return BreakTime + 2;
+        return BreakTime;
     }
 }

@@ -14,6 +14,6 @@ public class Sand : Basisblock
         if (tool == Tool.Shovel)
             return BreakTime - 2;
 
-        return BreakTime + 1;
+        return BreakTime;
     }
 }

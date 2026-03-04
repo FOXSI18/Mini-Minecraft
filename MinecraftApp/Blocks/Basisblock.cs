@@ -15,9 +15,18 @@ public abstract class Basisblock
     
     public virtual void ShowInfo()
     {
+        
+        if (Color == "yellow")
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        if (Color == "green")
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+        if (Color == "gray")
+            Console.ForegroundColor = ConsoleColor.Gray;
+        
         Console.WriteLine($"Block: {Name}");
         Console.WriteLine($"Color: {Color}");
         Console.WriteLine($"Break Time: {BreakTime} Seconds");
+        
     }
 
     public virtual int CalculateBreakTime(Tool tool)
@@ -33,11 +42,14 @@ public abstract class Basisblock
 
         for (int i = 1; i <= time; i++)
         {
-            Console.WriteLine($"Sec. {i}...");
+            Console.WriteLine($"Time: {i} seconds");
             Thread.Sleep(1000);
         }
 
+        Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"{Name} was broken!\n");
+        Console.ResetColor();
     }
 }
 
