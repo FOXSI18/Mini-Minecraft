@@ -15,9 +15,8 @@ class Program
             {
                 new Sand(),
                 new Wood(),
-                new IronOre(),
+                new Iron(),
             };
-            
             
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("You can choose your tool:");
@@ -28,7 +27,7 @@ class Program
             Console.WriteLine("5 = Exit\n");
             Console.ResetColor();
 
-            Tool selectedTool = 0;
+            Tool selectedTool;
 
             try
             {
