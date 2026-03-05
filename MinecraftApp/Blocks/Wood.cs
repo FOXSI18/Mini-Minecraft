@@ -10,7 +10,7 @@ public class Wood : Basisblock
      /// <summary>
      /// Calling the base class constructor for Wood
      /// </summary>
-        public Wood() : base("Wood", "brown", 4)
+        public Wood() : base("Wood", "Brown", 4)
     {
         IsFlammable = true;
     }

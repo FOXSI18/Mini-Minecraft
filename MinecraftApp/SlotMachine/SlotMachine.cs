@@ -23,6 +23,7 @@ namespace MinecraftApp.SlotMachine
             public int Won { get; set; }
             public int Lose { get; set; }
             public int Jackpot { get; set; }
+            public int Balance { get; set; }
         }
 
         private const string JsonFilePath = "playerStats.json";
@@ -42,11 +43,23 @@ namespace MinecraftApp.SlotMachine
             {
                 plStats = new PlayerStats();
             }
+
+            if (plStats.Balance < 10)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"You do not have enough money! Your balance is {plStats.Balance}.");
+                Console.ResetColor();
+                return;
+            }
+            
+            if (plStats.Balance >= 10)
+                plStats.Balance -= 10;
             
             int[] slots = new int[3];
             Random r = new Random();
             int totalScore = 0;
-
+            
             for (int i = 0; i < slots.Length; i++)
             {
                 slots[i] = r.Next(1, 4);
@@ -68,20 +81,22 @@ namespace MinecraftApp.SlotMachine
             
             if (totalScore == 9)
             {
+                plStats.Balance += 100; // x10
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"\nJACKPOT!!! | Scores: {totalScore}");
+                Console.WriteLine($"\nJACKPOT 100$!!! | Scores: {totalScore} | Balance: {plStats.Balance}$");
                 plStats.Jackpot++;
             }
             else if (totalScore >= 7)
             {
+                plStats.Balance += 20; // x2
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine($"\nYou won! | Scores: {totalScore}");
+                Console.WriteLine($"\nYou won 10$! | Scores: {totalScore} | Balance: {plStats.Balance}$");
                 plStats.Won++;
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine($"\nYou lose! | Scores: {totalScore}");
+                Console.WriteLine($"\nYou lose! | Scores: {totalScore} | Balance: {plStats.Balance}$");
                 plStats.Lose++;
             }
             Console.ResetColor();
@@ -89,7 +104,31 @@ namespace MinecraftApp.SlotMachine
             string updatedJson = JsonSerializer.Serialize(plStats, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(JsonFilePath, updatedJson);
 
-            Console.WriteLine($"Stats -> Won: {plStats.Won}, Lose: {plStats.Lose}, Jackpots: {plStats.Jackpot}");
+            Console.WriteLine($"\nStats -> Won: {plStats.Won}, Lose: {plStats.Lose}, Jackpots: {plStats.Jackpot}");
+        }
+
+        public void AddMoreMoney()
+        {
+            PlayerStats plStats;
+            if (File.Exists(JsonFilePath))
+            {
+                string existingJson = File.ReadAllText(JsonFilePath);
+                plStats = JsonSerializer.Deserialize<PlayerStats>(existingJson) ?? new PlayerStats();
+            }
+            else
+            {
+                plStats = new PlayerStats();
+            }
+            
+            plStats.Balance += 100;
+            
+            string updatedJson = JsonSerializer.Serialize(plStats, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(JsonFilePath, updatedJson);
+            
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine($"Added +100$ | New Balance: {plStats.Balance}$");
+            Console.ResetColor();
         }
     }
 }

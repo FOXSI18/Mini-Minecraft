@@ -10,7 +10,7 @@ public class Sand : Basisblock
     /// <summary>
     /// Calling the base class constructor for Sand
     /// </summary>
-    public Sand() : base("Sand", "yellow", 2)
+    public Sand() : base("Sand", "Yellow", 2)
     {
         FallsDown = true;
     }

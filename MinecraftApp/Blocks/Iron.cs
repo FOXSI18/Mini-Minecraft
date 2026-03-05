@@ -10,7 +10,7 @@ public class Iron : Basisblock
     /// <summary>
     /// Calling the base class constructor for Iron
     /// </summary>
-    public Iron() : base("Iron", "gray", 6)
+    public Iron() : base("Iron", "Gray", 6)
     {
         IsHard = true;
     }

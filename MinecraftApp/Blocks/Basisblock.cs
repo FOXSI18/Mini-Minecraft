@@ -27,11 +27,11 @@ public abstract class Basisblock
     /// </summary>
     public virtual void ShowInfo()
     {
-        if (Color == "yellow")
+        if (Color == "Yellow")
             Console.ForegroundColor = ConsoleColor.Yellow;
-        if (Color == "brown")
+        if (Color == "Brown")
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-        if (Color == "gray")
+        if (Color == "Gray")
             Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine("===========================");
         Console.WriteLine($"Block: {Name}");

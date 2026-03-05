@@ -12,8 +12,7 @@ class Program
         
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine("Welcome to Mini Minecraft!");
-        Console.WriteLine("[BONUS] Slot machine: '5'");
-        Console.WriteLine("If you want exit enter: '9'\n");
+        Console.WriteLine("You can choose tool to break some blocks.\nEnjoy it and don't forget about BONUS!\n");
         
         while (true)
         {
@@ -25,11 +24,14 @@ class Program
             };
             
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("You can choose your tool:");
+            Console.WriteLine("TOOLS");
             Console.WriteLine("1 = Hand");
             Console.WriteLine("2 = Pickaxe");
             Console.WriteLine("3 = Shovel");
-            Console.WriteLine("4 = Axe");
+            Console.WriteLine("4 = Axe\n");
+            Console.WriteLine("BONUS");
+            Console.WriteLine("5 = Slot machine\n");
+            Console.WriteLine("9 = Exit");
             Console.ResetColor();
 
             Tool selectedTool;
@@ -54,14 +56,14 @@ class Program
             {
                 while (true)
                 {
-                    Console.WriteLine("\n1 = Rules\n2 = Play\n3 = Break\n");
+                    Console.WriteLine("\n1 = Rules\n2 = Play 10$\n3 = Add more money\n4 = Break");
                     
                     string slotInput = Console.ReadLine();
-                    if (!int.TryParse(slotInput, out int userChoice) || userChoice < 1 || userChoice > 3) 
+                    if (!int.TryParse(slotInput, out int userChoice) || userChoice < 1 || userChoice > 4) 
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("Please enter a number (1, 2 or 3).");
+                        Console.WriteLine("Please enter a number (1 to 4).");
                         Console.ResetColor();
                         continue;
                     }
@@ -75,7 +77,8 @@ class Program
                         Console.WriteLine("Win >= 7 Scores");
                         Console.WriteLine("Lose <= 6 Scores");
                         Console.WriteLine("\n=====VALUES=====");
-                        Console.WriteLine("Dirt = 1\nApple = 2\nDiamond = 3\n");
+                        Console.WriteLine("Dirt = 1 Scores\nApple = 2 Scores\nDiamond = 3 Scores");
+                        Console.WriteLine("Cost for one time: 10$\n");
                         Console.ResetColor();
                         continue;
                     }
@@ -86,8 +89,13 @@ class Program
                         myMachine.ChooseRandomSlots();
                         continue;
                     }
-
+                    
                     if (userChoice == 3)
+                    {
+                        myMachine.AddMoreMoney();
+                    }
+
+                    if (userChoice == 4)
                     {
                         Console.Clear();
                         break;
@@ -115,10 +123,10 @@ class Program
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("All blocks have been destroyed!\n");
+            Console.WriteLine(">>> All blocks have been destroyed!\n");
             Console.ResetColor();
         }
 
-        Console.WriteLine("Program was finished!");
+        Console.WriteLine("Program was finished. Thanks for using the Mini Minecraft.");
     }
 }
