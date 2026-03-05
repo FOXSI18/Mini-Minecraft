@@ -10,19 +10,21 @@ class Program
         
         SlotMachine.SlotMachine myMachine = new SlotMachine.SlotMachine();
         
+        List<Basisblock> world = new List<Basisblock>
+        {
+            new Sand(),
+            new Wood(),
+            new Iron(),
+        };
+        
+        Tool selectedTool;
+        
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine("Welcome to Mini Minecraft!");
         Console.WriteLine("You can choose tool to break some blocks.\nEnjoy it and don't forget about BONUS!\n");
         
         while (true)
         {
-            List<Basisblock> world = new List<Basisblock>
-            {
-                new Sand(),
-                new Wood(),
-                new Iron(),
-            };
-            
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("TOOLS");
             Console.WriteLine("1 = Hand");
@@ -33,8 +35,6 @@ class Program
             Console.WriteLine("5 = Slot machine\n");
             Console.WriteLine("9 = Exit");
             Console.ResetColor();
-
-            Tool selectedTool;
 
             string input = Console.ReadLine();
             if (!int.TryParse(input, out int toolNumber)) 

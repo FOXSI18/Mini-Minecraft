@@ -1,0 +1,2 @@
+1. Remove the AddMoreMoney function and add a random money reward for breaking blocks.
+2. Break a specific number of random blocks (with a set maximum).
